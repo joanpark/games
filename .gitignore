@@ -1,0 +1,7 @@
+x64
+Debug
+Release
+.vs
+sfml_games.vcxproj.user
+sfml_games.vcxproj.filters
+SFML-2.5.1-windows-vc15-64-bit.zip

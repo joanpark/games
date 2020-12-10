@@ -39,37 +39,37 @@ int main()
                 app.close();
         }
 
-    if (Keyboard::isKeyPressed(Keyboard::Right)) x+=3;
-    if (Keyboard::isKeyPressed(Keyboard::Left)) x-=3;
+        if (Keyboard::isKeyPressed(Keyboard::Right)) x+=3;
+        if (Keyboard::isKeyPressed(Keyboard::Left)) x-=3;
 
-    dy+=0.2;
-    y+=dy;
-    if (y>500)  dy=-10;
+        dy+=0.2;
+        y+=dy;
+        if (y>500)  dy=-10;
 
-	if (y<h)
-    for (int i=0;i<10;i++)
-    {
-      y=h;
-      plat[i].y=plat[i].y-dy;
-      if (plat[i].y>533) {plat[i].y=0; plat[i].x=rand()%400;}
+	    if (y<h)
+        for (int i=0;i<10;i++)
+        {
+          y=h;
+          plat[i].y=plat[i].y-dy;
+          if (plat[i].y>533) {plat[i].y=0; plat[i].x=rand()%400;}
+        }
+
+	    for (int i=0;i<10;i++)
+        if ((x+50>plat[i].x) && (x+20<plat[i].x+68)
+        && (y+70>plat[i].y) && (y+70<plat[i].y+14) && (dy>0))  dy=-10;
+
+	    sPers.setPosition(x,y);
+
+        app.draw(sBackground);
+        app.draw(sPers);
+        for (int i=0;i<10;i++)
+        {
+        sPlat.setPosition(plat[i].x,plat[i].y);
+        app.draw(sPlat);
+        }
+
+        app.display();
     }
-
-	for (int i=0;i<10;i++)
-    if ((x+50>plat[i].x) && (x+20<plat[i].x+68)
-    && (y+70>plat[i].y) && (y+70<plat[i].y+14) && (dy>0))  dy=-10;
-
-	sPers.setPosition(x,y);
-
-    app.draw(sBackground);
-    app.draw(sPers);
-    for (int i=0;i<10;i++)
-    {
-    sPlat.setPosition(plat[i].x,plat[i].y);
-    app.draw(sPlat);
-    }
-
-    app.display();
-}
 
     return 0;
 }
