@@ -1,6 +1,8 @@
 #include <SFML/Graphics.hpp>
 #include <SFML/Audio.hpp>
 #include <time.h>
+#include "Game.h"
+
 using namespace sf;
 
 struct point
@@ -12,6 +14,10 @@ int initFont(sf::Text* text);
 
 int main()
 {
+    Game game;
+    game.run();
+
+    /*
     srand(time(0));
 
     // Create the main window
@@ -113,7 +119,7 @@ int main()
 
         app.display();
     }
-
+    */
     return 0;
 }
 

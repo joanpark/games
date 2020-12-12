@@ -10,10 +10,20 @@
 #define NODE_H
 
 #include <SFML/Graphics.hpp>
+#include <SFML/Audio.hpp>
+#include <SFML/Graphics/Drawable.hpp>
+
 
 class Node
 {
 public:
+
+    virtual ~Node()
+    {
+        // destruct elements
+        for (std::size_t i = 0; i < m_elements.size(); ++i)
+            delete m_elements[i];
+    }
 
     // ... functions to transform the node
 
@@ -30,6 +40,15 @@ public:
         // draw its children
         for (std::size_t i = 0; i < m_children.size(); ++i)
             m_children[i]->draw(target, combinedTransform);
+
+        // draw elements
+        for (std::size_t i = 0; i < m_elements.size(); ++i)
+            target.draw(*m_elements[i]);
+    }
+
+    void AddElement(sf::Drawable * drawable)
+    {
+        m_elements.push_back(drawable);
     }
 
 private:
@@ -38,6 +57,8 @@ private:
 
     sf::Transform m_transform;
     std::vector<Node*> m_children;
+
+    std::vector<sf::Drawable*> m_elements;
 };
 
 // a simple derived class: a node that draws a sprite
@@ -57,12 +78,32 @@ private:
     sf::Sprite m_sprite;
 };
 
+class Game;
 class Scene : public Node
 {
 public:
+    Scene(Game* game) 
+        : _game(game)
+    {
+    
+    }
 
-private:
+    ~Scene()
+    {
 
+    }
+    
+
+protected:
+
+    virtual void onDraw(sf::RenderTarget& target, const sf::Transform& transform) const
+    {
+        
+    }
+
+    //sf::Sprite _bg;
+    sf::Music _bgm;
+    Game* _game;
 };
 
 

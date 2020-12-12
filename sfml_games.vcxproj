@@ -158,10 +158,12 @@
     <ClCompile Include="MyGame\main.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</ExcludedFromBuild>
     </ClCompile>
+    <ClCompile Include="MyGame\Scene_Intro.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="MyGame\Game.h" />
     <ClInclude Include="MyGame\Node.h" />
+    <ClInclude Include="MyGame\Scene_Intro.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

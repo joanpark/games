@@ -11,11 +11,16 @@
 
 #include <SFML/Graphics.hpp>
 
+class Scene_Intro;
 class Game
 {
 public:
     Game();
+    ~Game();
+
     void run();
+
+    sf::Font & GetFont() { return _font;  }
 
 private:
     void processEvents();
@@ -24,7 +29,10 @@ private:
 
 private:
     sf::RenderWindow _window;
-    sf::CircleShape  _player;
+    sf::CircleShape  _testCircle;
+
+    Scene_Intro  * _sceneIntro;
+    sf::Font _font;
 };
 
 
