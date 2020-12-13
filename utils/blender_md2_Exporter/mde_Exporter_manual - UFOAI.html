@@ -1,0 +1,293 @@
+<html dir="ltr"><head><title>Modelling/Blender - UFO:AI :: Reader View</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <style>
+html {
+  scroll-behavior: smooth;
+  overflow: overlay;
+}
+body {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  margin: 30px auto 0 auto;
+  padding: 10px;
+}
+body[data-mode="light"] {
+  color:  #222;
+  background-color:  whitesmoke;
+}
+body[data-mode="dark"] {
+  color:  #eee;
+  background-color:  #333;
+}
+body[data-mode="sepia"] {
+  color:  #5b4636;
+  background-color:  #f4ecd8;
+}
+body[data-mode="solarized-light"] {
+  color:  #586e75;
+  background-color:  #fdf6e3;
+}
+body[data-mode="nord-light"] {
+  color:  #2e3440;
+  background-color:  #e5e9f0;
+}
+body[data-mode="groove-dark"] {
+  color:  #cec4ac;
+  background-color:  #282828;
+}
+body[data-mode="solarized-dark"] {
+  color:  #93a1a1;
+  background-color:  #002b36;
+}
+body[data-mode="nord-dark"] {
+  color:  #e5e9f0;
+  background-color:  #2e3440;
+}
+@media print {
+  body[data-mode="light"],
+  body[data-mode="dark"],
+  body[data-mode="sepia"],
+  body[data-mode="solarized-light"],
+  body[data-mode="nord-light"],
+  body[data-mode="groove-dark"],
+  body[data-mode="solarized-dark"],
+  body[data-mode="nord-dark"] {
+    color: #000;
+    background-color: #fff;
+  }
+}
+body[data-loaded=true] {
+  
+}
+img {
+  max-width: 100%;
+  height: auto;
+}
+body[data-images=false] canvas,
+body[data-images=false] svg,
+body[data-images=false] img {
+  display: none;
+}
+a {
+  color: #0095dd;
+  text-decoration: none;
+}
+#reader-domain {
+  font-family: Helvetica, Arial, sans-serif;
+  text-decoration: none;
+  border-bottom-color: currentcolor;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  width: 100%;
+  display: inline-block;
+  direction: ltr;
+}
+#reader-domain > span:first-child {
+  font-size: 1.1em;
+}
+#reader-domain > span:last-child {
+  font-size: 0.8em;
+}
+#reader-title {
+  font-size: 1.6em;
+  line-height: 1.25em;
+  width: 100%;
+  margin: 20px 0;
+  padding: 0;
+}
+#reader-credits {
+  font-size: 0.9em;
+  line-height: 1.48em;
+  margin: 0 0 10px 0;
+  padding: 0;
+  font-style: italic;
+}
+#reader-estimated-time {
+  font-size: 0.85em;
+  line-height: 1.48em;
+  margin: 0 0 10px 0;
+  padding: 0;
+}
+#reader-credits:empty {
+  display: none;
+}
+body[data-speech="true"] .tts-box {
+  position: absolute;
+  left: 0;
+  width: 100vw;
+  height: 32px;
+  z-index: 1;
+  pointer-events: none;
+  box-shadow: 0 0 0 1000vw rgba(128, 128, 128, 0.2);
+}
+body[data-speech="true"] .tts-word {
+  position: absolute;
+  z-index: 1;
+  pointer-events: none;
+  background-color: red;
+  height: 2px;
+}
+.tts-word.hidden,
+.tts-box.hidden {
+  display: none;
+}
+body[data-speech="false"] .tts-speaking::after {
+  display: none;
+}
+mark.hghlght {
+  background-color: #ffff81;
+}
+</style>
+  <style id="user-css">body {
+  padding-bottom: 64px;
+}
+a:visited {
+  color: #d33bf0;
+}
+a:link, a:link:hover, a:link:active {
+  color: #0095dd;
+}
+a:link {
+  text-decoration: none;
+  font-weight: normal;
+}
+pre {
+  white-space: pre-wrap;
+}
+pre code {
+  background-color: #eff0f1;
+  color: #393318;
+  font-family: monospace;
+  display: block;
+  padding: 5px 10px;
+}
+body[data-mode="dark"] pre code {
+  background-color: #585858;
+  color: #e8e8e8;
+}
+
+/* CSS for sans-serif fonts */
+body[data-font=sans-serif] {}
+/* CSS for serif fonts */
+body[data-font=serif] {}
+
+/* CSS for "sepia" theme */
+body[data-mode=sepia] {
+}
+/* CSS for "light" theme */
+body[data-mode=light] {}
+/* CSS for "dark" theme */
+body[data-mode=dark] {}</style>
+</head>
+<body data-images="true" data-mode="light" data-font="sans-serif" data-loaded="true">
+  <span></span> <!-- for IntersectionObserver -->
+  <a id="reader-domain" href="https://ufoai.org/wiki/Modelling/Blender">
+    <span>ufoai.org</span>
+    <span>/wiki/Modelling/Blender</span>
+  </a>
+  <h1 dir="auto" id="reader-title">Modelling/Blender - UFO:AI</h1>
+  <div dir="auto" id="reader-credits"></div>
+  <div dir="auto" id="reader-estimated-time">4-5 minutes</div>
+  <hr>
+  <div id="readability-page-1" class="page"><div id="mw-content-text" lang="en" dir="ltr"><p><a rel="nofollow" href="http://www.blender.org/">Blender</a> is a free open source 3D content creation suite, available for all major operating systems under the GNU General Public License. You can download it for free with no limitations.
+</p>
+
+
+<h2><span id="General">General</span></h2>
+<h3><span id="MD2_Scripts">MD2 Scripts</span></h3>
+<p>An import/export script for Blender 2.63+ is available at the blender-tools in our <a href="https://ufoai.org/wiki/Getting_the_source" title="Getting the source">repository</a>:
+</p>
+<ul><li><tt><a rel="nofollow" href="http://github.com/ufoai/ufoai/tree/master/src/tools/blender">src/tools/blender</a></tt>
+<ul><li><tt><a rel="nofollow" href="http://sourceforge.net/p/ufoai/code/ci/master/tree/src/tools/blender/io_mesh_md2.py?force=True">io_mesh_md2.py</a></tt></li></ul></li></ul>
+<p>Note: These seem to work fine on Blender 2.7x (--<a href="https://ufoai.org/wiki/User:DarkRain" title="User:DarkRain">DarkRain</a> (<a href="https://ufoai.org/wiki/User_talk:DarkRain" title="User talk:DarkRain">talk</a>) 05:28, 12 December 2014 (CET))
+</p>
+<h3><span id="MD2-TAG_Script">MD2-TAG Script</span></h3>
+<p>A Blender 2.63+ import/export script for <a href="https://ufoai.org/wiki/Modelling/Tags" title="Modelling/Tags">tag</a> files as used by our <a href="https://ufoai.org/wiki/MD2" title="MD2">MD2</a> models is available at the blender-tools in our <a href="https://ufoai.org/wiki/Getting_the_source" title="Getting the source">repository</a>:
+</p>
+<ul><li><tt><a rel="nofollow" href="http://github.com/ufoai/ufoai/tree/master/src/tools/blender">src/tools/blender</a></tt>
+<ul><li><tt><a rel="nofollow" href="http://sourceforge.net/p/ufoai/code/ci/master/tree/src/tools/blender/io_scene_tag.py?force=True">io_scene_tag.py</a></tt></li></ul></li></ul>
+<h2><span id="Export_MD2_from_Blender">Export MD2 from Blender</span></h2>
+<p>There are some things you need to consider when exporting a model to <a href="https://ufoai.org/wiki/MD2" title="MD2">MD2</a> from blender:
+</p><p>In Blender to export the model you need to
+</p>
+<ul><li>The model must be unwrapped.
+<ul><li>Please also add at least one <b>image</b> texture (and create an (blender) image for it — even a dummy one with no actual image) to your model before exporting all md2 need at least one skin.</li></ul></li>
+<li>If the center of your object (small violet circle) isn't located exactly in the absolute center (coord-grid center) you need to re-place it into the absolute center (unless you know what you are doing)</li>
+<li>Then you should be able to export it with the md2-export menu entry.</li></ul>
+
+<h3><span id="Scaling">Scaling</span></h3>
+<p>If you use one a scale where one blender unit equals one unit in the battlescape you need to scale up the model x16 before export.
+</p><p>See the <a rel="nofollow" href="http://ufoai.org/datasource/models/aliens/bloodspider.blend">bloodspider</a> (1x1) and the <a rel="nofollow" href="http://ufoai.org/datasource/models/aliens/hovernet.blend">hovernet</a> (2x2) models for reference. They also include blender-scaled reference boxes (1x1x2.45 blender units) that equals the cursor in geoscape.
+</p><p>You should configure Blender to use a grid setting of 6.4 (or multiples of this) - this will ensure, that the model will be aligned to the <a href="https://ufoai.org/wiki/Mapping" title="Mapping">UFORadiant</a> grid settings.
+</p>
+<h3><span id="Create_Animations">Create Animations</span></h3>
+<p><b>TODO: WRITEME</b>
+</p><p>Rough basics: No matter how you animate the model. As long as you export it as a <a href="https://ufoai.org/wiki/MD2" title="MD2">MD2</a> file you are limited by the specification of the model-type. Mainly the so-called <i>key-framed</i> animations of the <a href="https://ufoai.org/wiki/MD2" title="MD2">MD2</a> format are of interest to us. Basically the format stores a list of vertices (with UV-data)  and a list of animation frames. Each frame can have other positions of the vertices.
+</p><p>If you create a bone-based (or shape-key) animation of your model, export it to <a href="https://ufoai.org/wiki/MD2" title="MD2">MD2</a> and import that  in <a href="https://ufoai.org/wiki/Blender" title="Blender">Blender</a> again you'll loose all original information about bones and similar stuff .. they are transformed to key-frames on export. There still are animations there, but they are not as easily modified. This is also true for other modelling programs.
+</p><p>So <b>never ever loose your original file</b> if you don't want to re-create a lot of animation-work.
+</p><p>Placement of weapons, floor, heads, etc. ... for <a href="https://ufoai.org/wiki/MD2" title="MD2">MD2</a> files (which do not have this integrated into the format) is handled via the <a href="https://ufoai.org/w/index.php?title=Tag&amp;action=edit&amp;redlink=1" title="Tag (page does not exist)">tag</a> files. Tags are implemented in Blender via <i>Empty</i> objects which are animated along with the mesh, and are later exported to tag files, the same limitations regarding MD2 animation are applicable to tags, namely that they are also exported as <i>key-framed</i> animations.
+</p><p>Note: Some already animated <a href="https://ufoai.org/wiki/MD2" title="MD2">MD2</a> files (nearly every file created by <a href="https://ufoai.org/w/index.php?title=Herby&amp;action=edit&amp;redlink=1" title="Herby (page does not exist)">Herby</a> of the original dev-team) do <b>not</b> have existing source files (<a href="https://ufoai.org/w/index.php?title=Max&amp;action=edit&amp;redlink=1" title="Max (page does not exist)">max</a> files) any more ... it would be great if s/b would re-animate them in Blender so we can modify them more easily.
+</p>
+<h2><span id="Create_screenshots_of_models_with_UFOAI_frame">Create screenshots of models with UFOAI frame</span></h2>
+<p>To make creation of screenshots from 3d models with the green UFO:AI background&amp;frame easier (see the <a href="https://ufoai.org/wiki/Screenshots" title="Screenshots">Screenshots</a> section) a template for <a href="https://ufoai.org/wiki/Blender" title="Blender">Blender</a> with this background pre-set is available.
+</p><p>Just open up the <b><tt>presentation.blend</tt></b> file located in <a rel="nofollow" href="http://ufoai.org/datasource/models/aliens/presentation.blend">models/presentation.blend</a> and import/load [1] the wanted file. Make sure the model(s) is (are) nicely rotated and that the texture shows up in blender [2], press <span>F12</span> to render and <span>F3</span> to save the file.
+</p>
+<dl><dd>[1] Either <i>File</i>-&gt;<i>Import</i> an <a href="https://ufoai.org/wiki/MD2" title="MD2">MD2</a> or <i>File</i>-&gt;<i>Append</i> from a <b><tt>.blend</tt></b> file.</dd>
+<dd>[2] There is a readme text inside the .blend file.</dd></dl>
+<h2><span id="Links">Links</span></h2>
+<ul><li><a rel="nofollow" href="http://www.blender.org/">Blender Homepage</a></li>
+<li><a rel="nofollow" href="http://wiki.blender.org/index.php/BSoD/Introduction_to_Character_Animation">Introduction to Character Animation</a></li>
+<li><a rel="nofollow" href="http://en.wikibooks.org/wiki/Blender_3D:_Noob_to_Pro/Advanced_Tutorials/Advanced_Animation/Guided_tour/NLA/intro">Advanced Animation</a></li>
+<li><a rel="nofollow" href="http://blenderartists.org/">BlenderArtists</a> + <a rel="nofollow" href="http://blenderartists.org/forum">forum</a></li>
+<li><a rel="nofollow" href="http://www.blendernation.com/">BlenderNation (Blender news)</a></li>
+<li><a rel="nofollow" href="http://de.wikibooks.org/wiki/Blender_Dokumentation">German Blender Documentation</a></li>
+<li><a rel="nofollow" href="http://en.wikibooks.org/wiki/Blender_3D:_Noob_to_Pro">Blender Online Book - Noob to Pro</a></li>
+<li><a rel="nofollow" href="http://www.katsbits.com/htm/tutorials.htm">Tutorials (not only blender)</a></li>
+<li><a rel="nofollow" href="http://www.katsbits.com/htm/tutorials/blender_export_model_to_map.htm">Mapping with Blender</a></li></ul>
+
+<!-- 
+NewPP limit report
+Cached time: 20201213094532
+Cache expiry: 86400
+Dynamic content: false
+CPU time usage: 0.018 seconds
+Real time usage: 0.018 seconds
+Preprocessor visited node count: 304/1000000
+Preprocessor generated node count: 826/1000000
+Post‐expand include size: 3375/2097152 bytes
+Template argument size: 1771/2097152 bytes
+Highest expansion depth: 5/40
+Expensive parser function count: 0/100
+Unstrip recursion depth: 0/20
+Unstrip post‐expand size: 0/5000000 bytes
+-->
+<!--
+Transclusion expansion time report (%,ms,calls,template)
+100.00%    7.636      1 -total
+ 37.92%    2.896     18 Template:Http
+ 25.42%    1.941      2 Template:K
+ 18.31%    1.398      2 Template:Key
+ 11.76%    0.898      2 Template:Repositorydir
+ 11.38%    0.869      2 Template:Repository
+  6.00%    0.458      2 Template:Path
+-->
+</div></div>
+  <span></span> <!-- for IntersectionObserver -->
+  
+  
+  
+  
+
+
+</body><style>body {
+      font-size:  15px;
+      font-family: Helvetica, Arial, sans-serif;
+      width: 600px;
+    }
+    .page {
+      line-height: unset;
+    }
+    h1, h2, h3 {
+      line-height: initial;
+    }</style></html>
