@@ -7,6 +7,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "sfml_games", "sfml_games.vc
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Irrlicht_HelloWorld", "irrlicht-1.8.4\examples\01.HelloWorld\Irrlicht_HelloWorld_vc16.vcxproj", "{5AD4C95C-BA38-4692-BA4B-8C25A86208F9}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "02.Quake3Map", "irrlicht-1.8.4\examples\02.Quake3Map\Quake3Map_vc12.vcxproj", "{D1A464A2-D479-458C-98A2-60965D823CD1}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -31,6 +33,14 @@ Global
 		{5AD4C95C-BA38-4692-BA4B-8C25A86208F9}.Release|x64.Build.0 = Release|x64
 		{5AD4C95C-BA38-4692-BA4B-8C25A86208F9}.Release|x86.ActiveCfg = Release|Win32
 		{5AD4C95C-BA38-4692-BA4B-8C25A86208F9}.Release|x86.Build.0 = Release|Win32
+		{D1A464A2-D479-458C-98A2-60965D823CD1}.Debug|x64.ActiveCfg = Debug|x64
+		{D1A464A2-D479-458C-98A2-60965D823CD1}.Debug|x64.Build.0 = Debug|x64
+		{D1A464A2-D479-458C-98A2-60965D823CD1}.Debug|x86.ActiveCfg = Debug|Win32
+		{D1A464A2-D479-458C-98A2-60965D823CD1}.Debug|x86.Build.0 = Debug|Win32
+		{D1A464A2-D479-458C-98A2-60965D823CD1}.Release|x64.ActiveCfg = Release|x64
+		{D1A464A2-D479-458C-98A2-60965D823CD1}.Release|x64.Build.0 = Release|x64
+		{D1A464A2-D479-458C-98A2-60965D823CD1}.Release|x86.ActiveCfg = Release|Win32
+		{D1A464A2-D479-458C-98A2-60965D823CD1}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

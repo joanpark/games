@@ -127,6 +127,7 @@ int main()
 		node = smgr->addOctreeSceneNode(mesh->getMesh(0), 0, -1, 1024);
 //		node = smgr->addMeshSceneNode(mesh->getMesh(0));
 
+
 	/*
 	Because the level was not modelled around the origin (0,0,0), we
 	translate the whole level a little bit. This is done on
@@ -157,6 +158,25 @@ int main()
 	irr::IrrlichtDevice::ICursorControl.
 	*/
 	device->getCursorControl()->setVisible(false);
+
+
+	scene::IAnimatedMesh* mesh2 = smgr->getMesh("../../media/jesus_forMD2.blend.md2");
+	if (!mesh2)
+	{
+		device->drop();
+		return 1;
+	}
+	scene::IAnimatedMeshSceneNode* node2 = smgr->addAnimatedMeshSceneNode(mesh2);
+
+	if (node2)
+	{
+		node2->setMaterialFlag(video::EMF_LIGHTING, false);
+		//node->setMD2Animation(scene::EMAT_STAND);
+		bool animRet = node2->setMD2Animation("Default");
+		//node->setMaterialTexture(0, driver->getTexture("../../media/sydney.bmp"));
+		node2->setMaterialTexture(0, driver->getTexture("../../media/jesus.png"));
+	}
+
 
 	/*
 	We have done everything, so lets draw it. We also write the current
