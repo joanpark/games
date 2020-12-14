@@ -61,7 +61,7 @@ int main()
 
 	// 테스트 용 모델 출력 (퀘이크2 모델)
 	//IAnimatedMesh* mesh = smgr->getMesh("../../media/sydney.md2");
-	IAnimatedMesh* mesh = smgr->getMesh("../../media/jesus_forMD2.blend.md2");
+	IAnimatedMesh* mesh = smgr->getMesh("../../media/chrm_mike.obj.md2");
 	if (!mesh)
 	{
 		device->drop();
@@ -75,18 +75,21 @@ int main()
 	// 마지막으로, 텍스쳐 설정
 	if (node)
 	{
+		core::vector3df scale(75.0f, 75.0f, 75.0f);
+		node->setScale(scale);
+
 		node->setMaterialFlag(EMF_LIGHTING, false);
 		//node->setMD2Animation(scene::EMAT_STAND);
-		bool animRet = node->setMD2Animation("fram");
+		bool animRet = node->setMD2Animation("Walk");
 		//node->setMaterialTexture(0, driver->getTexture("../../media/sydney.bmp"));
-		node->setMaterialTexture(0, driver->getTexture("../../media/jesus.png"));
+		node->setMaterialTexture(0, driver->getTexture("../../media/chrm_mike.png"));
 	}
 
 	// 카메라 설정
 	// parent : 0이면 parent 없음
 	// position : 카메리 위치
 	// target : 바라보는 위치(모델의 위치)
-	smgr->addCameraSceneNode(0, vector3df(0, 10, -15), vector3df(0, 5, 0));
+	smgr->addCameraSceneNode(0, vector3df(0, 130, -140), vector3df(0, 5, 0));
 
 	
 	while (device->run())
