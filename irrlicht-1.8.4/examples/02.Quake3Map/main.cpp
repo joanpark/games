@@ -160,7 +160,7 @@ int main()
 	device->getCursorControl()->setVisible(false);
 
 
-	scene::IAnimatedMesh* mesh2 = smgr->getMesh("../../media/jesus_forMD2.blend.md2");
+	scene::IAnimatedMesh* mesh2 = smgr->getMesh("../../media/chrm_mike.obj.md2");
 	if (!mesh2)
 	{
 		device->drop();
@@ -171,10 +171,17 @@ int main()
 	if (node2)
 	{
 		node2->setMaterialFlag(video::EMF_LIGHTING, false);
-		//node->setMD2Animation(scene::EMAT_STAND);
-		bool animRet = node2->setMD2Animation("Default");
+		bool animRet = node2->setMD2Animation("Idle");
+		node2->setAnimationSpeed(60.0f);
+		node2->setLoopMode(true);
+		core::vector3df scale(75.0f, 75.0f, 75.0f);
+		node2->setScale(scale);
+
+		core::vector3df pos(0.0f, -60.0f, 0.0f);
+		node2->setPosition(pos);
+
 		//node->setMaterialTexture(0, driver->getTexture("../../media/sydney.bmp"));
-		node2->setMaterialTexture(0, driver->getTexture("../../media/jesus.png"));
+		node2->setMaterialTexture(0, driver->getTexture("../../media/chrm_mike.png"));
 	}
 
 
