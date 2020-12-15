@@ -59,6 +59,17 @@ int main(int argc, char** argv)
 		smgr->loadScene("../../media/sample1.irr");
 	}
 
+	// Α¶Έν
+	scene::ILightSceneNode* pLight = smgr->addLightSceneNode();
+	video::SLight& l = pLight->getLightData();
+	l.Type = video::ELT_DIRECTIONAL;
+
+	scene::ISceneNode* pNode = smgr->addEmptySceneNode();
+	pLight->setPosition(core::vector3df(0, 0, 1)); //default is (1,1,0) for directional lights
+	pLight->setParent(pNode);
+	pLight->setRotation(core::vector3df(45, 45, 0));
+	
+
 	/*
 	Now we'll create a camera, and give it a collision response animator
 	that's built from the mesh nodes in the scene we just loaded.
