@@ -54,7 +54,10 @@ int main(int argc, char** argv)
 	if (argc>1)
 		smgr->loadScene(argv[1]);
 	else
-		smgr->loadScene("../../media/example.irr");
+	{
+		//smgr->loadScene("../../media/example.irr");
+		smgr->loadScene("../../media/sample1.irr");
+	}
 
 	/*
 	Now we'll create a camera, and give it a collision response animator

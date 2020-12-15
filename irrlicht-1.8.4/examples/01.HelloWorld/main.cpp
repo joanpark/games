@@ -34,13 +34,15 @@ int main()
 	// 디바이스 생성: 가장 기본이 되는 일리히트의 설정
 	// deviceType : 소프트웨어 렌더러, DirectX, OpenGL 중 선택
 	// windowSize : 창 크기
-	// bits : 픽셀당 컬러 지정, 현재는 16비트 컬러
+	// bits : 픽셀당 컬러 지정, 현재는 16비트 컬러 (디폴트도 16)
 	// fullscreen :  창모드
 	// stencilbuffer : 그림자 등을 그리기 위한 스텐실버퍼 사용 여부
 	// vsync : vsynce enabled, true of false, 풀스크린일때만 의미를 가짐
 	// eventReciver : 이벤트 받을 객체 지정, 사용하지 않으려면 0
+
+	E_DRIVER_TYPE driverType = EDT_OPENGL;
 	IrrlichtDevice* device =
-		createDevice(video::EDT_SOFTWARE, dimension2d<u32>(640, 480), 16,
+		createDevice(driverType, dimension2d<u32>(640, 480), 16,
 			false, false, false, 0);
 
 	if (!device)
@@ -53,8 +55,12 @@ int main()
 	IVideoDriver* driver = device->getVideoDriver();
 	ISceneManager* smgr = device->getSceneManager();
 	IGUIEnvironment* guienv = device->getGUIEnvironment();
+	device->getFileSystem()->addFileArchive("../../media/map-20kdm2.pk3");
 
 	
+	// 일종의 압축파일인 .pk3 아카이브 파일을 일리히트의 파일시스템에 추가
+	// 그러면, 이 안에 들어있는 리소스들을 사용할 수 있따.
+
 	// 테스트 용 텍스트 출력  (GUI)
 	guienv->addStaticText(L"Hello World! This is the Irrlicht Software renderer!",
 		rect<s32>(10, 10, 260, 22), true);
