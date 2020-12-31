@@ -154,16 +154,20 @@
     <ClCompile Include="02 Doodle Jump\main.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
     </ClCompile>
+    <ClCompile Include="MyGame\Button.cpp" />
     <ClCompile Include="MyGame\Game.cpp" />
     <ClCompile Include="MyGame\main.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="MyGame\Scene_Intro.cpp" />
+    <ClCompile Include="MyGame\Scene_Normal.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="MyGame\Button.h" />
     <ClInclude Include="MyGame\Game.h" />
     <ClInclude Include="MyGame\Node.h" />
     <ClInclude Include="MyGame\Scene_Intro.h" />
+    <ClInclude Include="MyGame\Scene_Normal.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
