@@ -25,6 +25,7 @@ public:
     bool IsWindowOpen() { return _window.isOpen(); }
 
     void updateIMGUI();
+    void updateIMGUI_SceneEditor();
 
 private:
     void processEvents();

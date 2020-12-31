@@ -44,7 +44,12 @@ void Game::run()
     {
         processEvents();
 
-        updateIMGUI();
+        if (_isEditor)
+        {
+            ImGui::SFML::Update(_window, deltaClock.restart());
+            updateIMGUI();
+            updateIMGUI_SceneEditor();
+        }
 
         update();
         render();
@@ -54,11 +59,7 @@ void Game::run()
 }
 
 void Game::updateIMGUI()
-{
-    if (_isEditor == false) return;
-
-    ImGui::SFML::Update(_window, deltaClock.restart());
-
+{    
     ImGui::Begin("Sample window"); // begin window
 
                                    // Background color edit
@@ -79,10 +80,46 @@ void Game::updateIMGUI()
         // but I do this to show how buttons work :)
         _window.setTitle(windowTitle);
     }
+
+    ImGui::BeginChild("Scrolling");
+    for (int n = 0; n < 50; n++)
+        ImGui::Text("%04d: Some text", n);
+    ImGui::EndChild();
+
+
     ImGui::End(); // end window
 
 
 
+}
+
+void Game::updateIMGUI_SceneEditor()
+{
+    ImGui::Begin("Scene View"); // begin window
+
+    //if (!ImGui::CollapsingHeader("Popups & Modal windows"))
+    //    return;
+
+    if (ImGui::TreeNode("root"))
+    {
+        ImGui::Text("test1");
+        if (ImGui::BeginPopupContextItem("item context menu"))
+        {
+            if (ImGui::Selectable("Set to zero")) { }
+            if (ImGui::Selectable("Set to PI")) { }
+            
+            //ImGui::SetNextItemWidth(-1);
+
+            if (ImGui::Button("Close"))
+                ImGui::CloseCurrentPopup();
+
+            ImGui::EndPopup();
+        }
+
+        ImGui::TreePop();
+    }
+
+    ImGui::End(); // end window
 }
 
 void Game::processEvents()
