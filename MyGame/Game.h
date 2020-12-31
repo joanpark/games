@@ -22,6 +22,10 @@ public:
 
     sf::Font & GetFont() { return _font;  }
 
+    bool IsWindowOpen() { return _window.isOpen(); }
+
+    void updateIMGUI();
+
 private:
     void processEvents();
     void update();
@@ -33,6 +37,12 @@ private:
 
     Scene_Intro  * _sceneIntro;
     sf::Font _font;
+
+    // for imgui
+    sf::Color bgColor;
+    float color[3] = { 0.f, 0.f, 0.f };
+    char windowTitle[255] = "ImGui + SFML = <3";
+    sf::Clock deltaClock;
 };
 
 
