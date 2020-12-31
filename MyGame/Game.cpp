@@ -1,5 +1,6 @@
 #include "Game.h"
 #include "Scene_Intro.h"
+#include "Scene_Normal.h"
 #include "imgui.h"
 #include "imgui-SFML.h"
 
@@ -12,7 +13,7 @@ Game::Game(bool isEditor=false)
 
     _window.setFramerateLimit(60);
 
-    _sceneIntro = new Scene_Intro(this);
+    //_sceneIntro = new Scene_Intro(this);
 
     // init font
     if (!_font.loadFromFile("resources/KoPubWorld Batang Bold.ttf"))
@@ -35,7 +36,9 @@ Game::Game(bool isEditor=false)
 
 Game::~Game()
 {
-    delete _sceneIntro;
+    destroyScene();
+    //delete _sceneIntro;
+
 }
 
 void Game::run()
@@ -97,28 +100,47 @@ void Game::updateIMGUI_SceneEditor()
 {
     ImGui::Begin("Scene View"); // begin window
 
+    if (ImGui::Button("New Scene"))
+    {
+        destroyScene();
+        createScene();
+    }
+
+    if (ImGui::Button("Remove Scene"))
+    {
+        destroyScene();
+
+    }
+
+    if (ImGui::Button("Save Scene"))
+    {
+
+    }
+
     //if (!ImGui::CollapsingHeader("Popups & Modal windows"))
     //    return;
 
-    if (ImGui::TreeNode("root"))
-    {
-        ImGui::Text("test1");
-        if (ImGui::BeginPopupContextItem("item context menu"))
+    if (_currentScene != NULL)
+    {    
+        if (ImGui::TreeNode(_currentScene->getName().c_str()))
         {
-            if (ImGui::Selectable("Set to zero")) { }
-            if (ImGui::Selectable("Set to PI")) { }
-            
-            //ImGui::SetNextItemWidth(-1);
+            ImGui::Text("test1");
+            if (ImGui::BeginPopupContextItem("item context menu"))
+            {
+                if (ImGui::Selectable("Set to zero")) {}
+                if (ImGui::Selectable("Set to PI")) {}
 
-            if (ImGui::Button("Close"))
-                ImGui::CloseCurrentPopup();
+                //ImGui::SetNextItemWidth(-1);
 
-            ImGui::EndPopup();
+                if (ImGui::Button("Close"))
+                    ImGui::CloseCurrentPopup();
+
+                ImGui::EndPopup();
+            }
+
+            ImGui::TreePop();
         }
-
-        ImGui::TreePop();
     }
-
     ImGui::End(); // end window
 }
 
@@ -145,7 +167,12 @@ void Game::render()
 
     // draw intro scene
     sf::Transform identityTrans;
-    _sceneIntro->draw(_window, identityTrans);
+    //_sceneIntro->draw(_window, identityTrans);
+
+    if (_currentScene != NULL)
+    {
+        _currentScene->draw(_window, identityTrans);
+    }
 
     _window.draw(_testCircle);
     
@@ -153,4 +180,19 @@ void Game::render()
 
 
     _window.display();
+}
+
+void Game::createScene()
+{
+    _currentScene = new Scene_Normal(this);
+    _currentScene->setName("Untitled...");
+}
+
+void Game::destroyScene()
+{
+    if (_currentScene != NULL)
+    {
+        delete _currentScene;
+        _currentScene = NULL;
+    }
 }

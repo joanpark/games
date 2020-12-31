@@ -13,6 +13,7 @@
 
 
 class Scene_Intro;
+class Scene_Normal;
 class Game
 {
 public:
@@ -33,11 +34,15 @@ private:
     void update();
     void render();
 
+    void createScene();
+    void destroyScene();
+
 private:
     sf::RenderWindow _window;
     sf::CircleShape  _testCircle;
 
-    Scene_Intro  * _sceneIntro;
+    //Scene_Intro  * _sceneIntro;
+    Scene_Normal* _currentScene;
     sf::Font _font;
 
     bool _isEditor = false;

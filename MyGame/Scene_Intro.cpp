@@ -1,4 +1,5 @@
 #include "Scene_Intro.h"
+#include "GameObject.h"
 
 using namespace sf;
 
@@ -34,6 +35,10 @@ Scene_Intro::Scene_Intro(Game* game) :
 	sf::String s = L"당신의 이름은 무엇입니까?";
 	text->setString(s);
 	AddElement(text);
+
+	// test child gameobject
+	GameObject* testObj = new GameObject();
+	AddChild(testObj);
 }
 
 

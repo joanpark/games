@@ -8,7 +8,6 @@
 
 #ifndef NODE_H
 #define NODE_H
-
 #include <SFML/Graphics.hpp>
 #include <SFML/Audio.hpp>
 #include <SFML/Graphics/Drawable.hpp>
@@ -18,11 +17,26 @@ class Node
 {
 public:
 
+    Node()
+    {
+
+    }
+
+    Node(std::string name) :
+        _name(name)
+    {
+
+    }
+
     virtual ~Node()
     {
         // destruct elements
         for (std::size_t i = 0; i < m_elements.size(); ++i)
             delete m_elements[i];
+
+        // destruct children
+        for (std::size_t i = 0; i < m_children.size(); ++i)
+            delete m_children[i];
     }
 
     // ... functions to transform the node
@@ -41,19 +55,40 @@ public:
         for (std::size_t i = 0; i < m_children.size(); ++i)
             m_children[i]->draw(target, combinedTransform);
 
-        // draw elements
-        for (std::size_t i = 0; i < m_elements.size(); ++i)
-            target.draw(*m_elements[i]);
     }
+
+    void AddChild(Node* childNode)
+    {
+        m_children.push_back(childNode);
+    }
+
 
     void AddElement(sf::Drawable * drawable)
     {
         m_elements.push_back(drawable);
     }
 
+    void setName(std::string name)
+    {
+        _name = name;
+    }
+
+    const std::string & getName() const
+    {
+        return _name;
+    }
+
+protected:
+    virtual void onDraw(sf::RenderTarget& target, const sf::Transform& transform) const
+    {
+        // draw elements
+        for (std::size_t i = 0; i < m_elements.size(); ++i)
+            target.draw(*m_elements[i]);
+    }
+
 private:
 
-    virtual void onDraw(sf::RenderTarget& target, const sf::Transform& transform) const = 0;
+    std::string _name;
 
     sf::Transform m_transform;
     std::vector<Node*> m_children;

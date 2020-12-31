@@ -23,9 +23,9 @@ public:
 
 protected:
 
-    virtual void onDraw(sf::RenderTarget& target, const sf::Transform& transform) const
+    void onDraw(sf::RenderTarget& target, const sf::Transform& transform) const override
     {
-
+        Node::onDraw(target, transform);
     }
 
     //sf::Sprite _bg;
