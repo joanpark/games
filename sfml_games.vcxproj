@@ -165,6 +165,8 @@
     <ClCompile Include="MyGame\main.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</ExcludedFromBuild>
     </ClCompile>
+    <ClCompile Include="MyGame\Node.cpp" />
+    <ClCompile Include="MyGame\Scene.cpp" />
     <ClCompile Include="MyGame\Scene_Intro.cpp" />
     <ClCompile Include="MyGame\Scene_Normal.cpp" />
   </ItemGroup>
@@ -176,6 +178,7 @@
     <ClInclude Include="MyGame\Button.h" />
     <ClInclude Include="MyGame\Game.h" />
     <ClInclude Include="MyGame\Node.h" />
+    <ClInclude Include="MyGame\Scene.h" />
     <ClInclude Include="MyGame\Scene_Intro.h" />
     <ClInclude Include="MyGame\Scene_Normal.h" />
   </ItemGroup>

@@ -11,6 +11,7 @@
 
 #include <SFML/Graphics.hpp>
 #include "Node.h"
+#include "Scene.h"
 #include "Game.h"
 
 class Scene_Normal : public Scene

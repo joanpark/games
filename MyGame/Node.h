@@ -62,6 +62,7 @@ private:
 };
 
 // a simple derived class: a node that draws a sprite
+/*
 class SpriteNode : public Node
 {
 public:
@@ -77,34 +78,6 @@ private:
 
     sf::Sprite m_sprite;
 };
-
-class Game;
-class Scene : public Node
-{
-public:
-    Scene(Game* game) 
-        : _game(game)
-    {
-    
-    }
-
-    ~Scene()
-    {
-
-    }
-    
-
-protected:
-
-    virtual void onDraw(sf::RenderTarget& target, const sf::Transform& transform) const
-    {
-        
-    }
-
-    //sf::Sprite _bg;
-    sf::Music _bgm;
-    Game* _game;
-};
-
+*/
 
 #endif // NODE_H
