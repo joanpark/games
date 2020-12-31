@@ -12,9 +12,14 @@ struct point
 
 int initFont(sf::Text* text);
 
-int main()
+int main(int argc, char* argv[])
 {
-    Game game;
+    bool isEditor = false;
+
+    if ((argc == 2) && _stricmp(argv[1], "editor") == 0)
+        isEditor = true;
+
+    Game game(isEditor);
     game.run();
 
    

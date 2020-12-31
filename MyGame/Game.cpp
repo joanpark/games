@@ -4,9 +4,10 @@
 #include "imgui-SFML.h"
 
 
-Game::Game()
+Game::Game(bool isEditor=false)
     : _window(sf::VideoMode(1280, 720), L"Unveil¢â")
     , _testCircle()
+    , _isEditor(isEditor)
 {
 
     _window.setFramerateLimit(60);
@@ -54,6 +55,8 @@ void Game::run()
 
 void Game::updateIMGUI()
 {
+    if (_isEditor == false) return;
+
     ImGui::SFML::Update(_window, deltaClock.restart());
 
     ImGui::Begin("Sample window"); // begin window
@@ -109,7 +112,7 @@ void Game::render()
 
     _window.draw(_testCircle);
     
-    ImGui::SFML::Render(_window);
+    if (_isEditor) ImGui::SFML::Render(_window);
 
 
     _window.display();

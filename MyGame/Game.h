@@ -15,7 +15,7 @@ class Scene_Intro;
 class Game
 {
 public:
-    Game();
+    Game(bool isEditor);
     ~Game();
 
     void run();
@@ -37,6 +37,8 @@ private:
 
     Scene_Intro  * _sceneIntro;
     sf::Font _font;
+
+    bool _isEditor = false;
 
     // for imgui
     sf::Color bgColor;
