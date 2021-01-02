@@ -26,6 +26,7 @@ public:
 
     bool IsWindowOpen() { return _window.isOpen(); }
 
+    void updateIMGUI_MenuBar();
     void updateIMGUI();
     void updateIMGUI_SceneEditor();
 
@@ -39,7 +40,7 @@ private:
 
 private:
     sf::RenderWindow _window;
-    sf::CircleShape  _testCircle;
+   // sf::CircleShape  _testCircle;
 
     //Scene_Intro  * _sceneIntro;
     Scene_Normal* _currentScene;
@@ -50,7 +51,7 @@ private:
     // for imgui
     sf::Color bgColor;
     float color[3] = { 0.f, 0.f, 0.f };
-    char windowTitle[255] = "ImGui + SFML = <3";
+    char windowTitle[255] = "Unveil";
     sf::Clock deltaClock;
 };
 

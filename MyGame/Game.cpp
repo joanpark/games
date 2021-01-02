@@ -3,11 +3,12 @@
 #include "Scene_Normal.h"
 #include "imgui.h"
 #include "imgui-SFML.h"
+#include "GameObject.h"
 
 
 Game::Game(bool isEditor=false)
     : _window(sf::VideoMode(1280, 720), L"Unveil¢â")
-    , _testCircle()
+    //, _testCircle()
     , _isEditor(isEditor)
 {
 
@@ -26,9 +27,9 @@ Game::Game(bool isEditor=false)
 
 
     // test circle
-    _testCircle.setRadius(40.f);
-    _testCircle.setPosition(100.f, 100.f);
-    _testCircle.setFillColor(sf::Color::Cyan);
+    //_testCircle.setRadius(40.f);
+    //_testCircle.setPosition(100.f, 100.f);
+    //_testCircle.setFillColor(sf::Color::Cyan);
 
     // imgui
     ImGui::SFML::Init(_window);
@@ -50,6 +51,7 @@ void Game::run()
         if (_isEditor)
         {
             ImGui::SFML::Update(_window, deltaClock.restart());
+            updateIMGUI_MenuBar();
             updateIMGUI();
             updateIMGUI_SceneEditor();
         }
@@ -61,9 +63,73 @@ void Game::run()
     ImGui::SFML::Shutdown();
 }
 
+void Game::updateIMGUI_MenuBar()
+{
+    if (ImGui::BeginMainMenuBar())
+    {
+        if (ImGui::BeginMenu("File"))
+        {
+            //ShowExampleMenuFile();
+            ImGui::EndMenu();
+        }
+        if (ImGui::BeginMenu("Edit"))
+        {
+            if (ImGui::MenuItem("Undo", "CTRL+Z")) {}
+            if (ImGui::MenuItem("Redo", "CTRL+Y", false, false)) {}  // Disabled item
+            ImGui::Separator();
+            if (ImGui::MenuItem("Cut", "CTRL+X")) {}
+            if (ImGui::MenuItem("Copy", "CTRL+C")) {}
+            if (ImGui::MenuItem("Paste", "CTRL+V")) {}
+            ImGui::EndMenu();
+        }
+        if (ImGui::BeginMenu("Window"))
+        {
+            ImGui::EndMenu();
+        }
+        if (ImGui::BeginMenu("Help"))
+        {
+            if(ImGui::MenuItem("About SFML Scene Editor")){}
+            ImGui::EndMenu();
+        }
+        ImGui::EndMainMenuBar();
+    }
+    /*
+    ImGuiWindowFlags window_flags = 0;
+    window_flags |= ImGuiWindowFlags_MenuBar;
+    ImGui::Begin("SFML Scene Editor v0.1", 0, window_flags); // begin window
+
+    static bool show_app_about = false;
+
+    if (ImGui::BeginMenuBar())
+    {
+        if (ImGui::BeginMenu("File")) 
+        { 
+            ImGui::EndMenu();
+        }
+        if (ImGui::BeginMenu("Edit")) 
+        {
+            ImGui::EndMenu();
+        }
+        if (ImGui::BeginMenu("Window")) 
+        {
+            ImGui::EndMenu();
+        }
+        if (ImGui::BeginMenu("Help")) 
+        {
+            ImGui::MenuItem("About SFML Scene Editor", NULL, &show_app_about);
+            ImGui::EndMenu();
+        }
+
+        ImGui::EndMenuBar();
+    }
+
+    ImGui::End(); // end window
+    */
+}
+
 void Game::updateIMGUI()
 {    
-    ImGui::Begin("Sample window"); // begin window
+    ImGui::Begin("Project Window"); // begin window
 
                                    // Background color edit
     if (ImGui::ColorEdit3("Background color", color)) {
@@ -81,7 +147,9 @@ void Game::updateIMGUI()
         // this code gets if user clicks on the button
         // yes, you could have written if(ImGui::InputText(...))
         // but I do this to show how buttons work :)
-        _window.setTitle(windowTitle);
+        sf::String tempStr = windowTitle;
+        tempStr += L"¢â";
+        _window.setTitle(tempStr);
     }
 
     ImGui::BeginChild("Scrolling");
@@ -98,7 +166,7 @@ void Game::updateIMGUI()
 
 void Game::updateIMGUI_SceneEditor()
 {
-    ImGui::Begin("Scene View"); // begin window
+    ImGui::Begin("Scene Hierarchy"); // begin window
 
     if (ImGui::Button("New Scene"))
     {
@@ -117,6 +185,17 @@ void Game::updateIMGUI_SceneEditor()
 
     }
 
+    if (ImGui::Button("Create GameObject"))
+    {
+        if (_currentScene != NULL)
+        {
+            // test child gameobject
+            GameObject* newObject = new GameObject("New Object");
+            _currentScene->AddChild(newObject);
+        }
+    }
+
+
     //if (!ImGui::CollapsingHeader("Popups & Modal windows"))
     //    return;
 
@@ -124,11 +203,17 @@ void Game::updateIMGUI_SceneEditor()
     {    
         if (ImGui::TreeNode(_currentScene->getName().c_str()))
         {
-            ImGui::Text("test1");
-            if (ImGui::BeginPopupContextItem("item context menu"))
+            std::vector<Node*> children = _currentScene->GetChildren();
+            for (const auto& element : children)
             {
-                if (ImGui::Selectable("Set to zero")) {}
-                if (ImGui::Selectable("Set to PI")) {}
+                ImGui::Text(element->getName().c_str());
+
+            }
+
+           /*if (ImGui::BeginPopupContextItem("item context menu"))
+            {
+                if (ImGui::Selectable("Copy")) {}
+                if (ImGui::Selectable("Paste")) {}
 
                 //ImGui::SetNextItemWidth(-1);
 
@@ -136,7 +221,8 @@ void Game::updateIMGUI_SceneEditor()
                     ImGui::CloseCurrentPopup();
 
                 ImGui::EndPopup();
-            }
+            }*/
+
 
             ImGui::TreePop();
         }
@@ -174,7 +260,7 @@ void Game::render()
         _currentScene->draw(_window, identityTrans);
     }
 
-    _window.draw(_testCircle);
+    //_window.draw(_testCircle);
     
     if (_isEditor) ImGui::SFML::Render(_window);
 

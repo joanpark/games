@@ -62,6 +62,10 @@ public:
         m_children.push_back(childNode);
     }
 
+    std::vector<Node*> GetChildren()
+    {
+        return m_children;
+    }
 
     void AddElement(sf::Drawable * drawable)
     {
